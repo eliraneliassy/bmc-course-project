@@ -14,4 +14,19 @@ export class AppComponent {
   addToCart(item) {
     this.shoppingCart.push(item);
   }
+
+  removeFromCart(item) {
+    const index = this.shoppingCart.indexOf(item);
+    if (index > -1) {
+      this.shoppingCart.splice(index, 1);
+    }
+  }
+
+  existInCart(item): boolean {
+    return this.shoppingCart.indexOf(item) > -1;
+  }
+
+  loadMore() {
+    console.log('load more');
+  }
 }
