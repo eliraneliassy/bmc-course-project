@@ -3,7 +3,7 @@
       {{item.description}}
     </div>
 
-    <img [src]="item.imageUrl">
+    <img [ngStyle]="{ 'background-image': 'url(' + item.imageUrl + ')'}">
 
     <div class="price">{{item.price}}</div>
   </div>
