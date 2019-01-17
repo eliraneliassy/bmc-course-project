@@ -1,4 +1,9 @@
+<div>Your shopping cart</div>
+<app-item [item]="item" *ngFor="let item of shoppingCart"></app-item>
+<hr>
+
 <div class="container row">
-  <app-item [item]="item" *ngFor="let item of data" 
-  class="col-lg-3 col-md-6 col-sm-12"></app-item>
+
+  <app-item [item]="item" (addToCartEvent)="addToCart($event)"
+   *ngFor="let item of data" class="col-lg-3 col-md-6 col-sm-12"></app-item>
 </div>

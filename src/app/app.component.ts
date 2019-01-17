@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   data: any[] = db;
+  shoppingCart: any[] = [];
+
+  addToCart(item) {
+    this.shoppingCart.push(item);
+  }
 }
