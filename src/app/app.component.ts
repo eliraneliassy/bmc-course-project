@@ -8,21 +8,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  data: any[] = db;
-  shoppingCart: any[] = [];
+  data: Item[] = db;
+  shoppingCart: Item[] = [];
 
   addToCart(item) {
     this.shoppingCart.push(item);
   }
 
-  removeFromCart(item) {
+  removeFromCart(item: Item) {
     const index = this.shoppingCart.indexOf(item);
     if (index > -1) {
       this.shoppingCart.splice(index, 1);
     }
   }
 
-  existInCart(item): boolean {
+  existInCart(item: Item): boolean {
     return this.shoppingCart.indexOf(item) > -1;
   }
 

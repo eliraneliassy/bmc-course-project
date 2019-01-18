@@ -1,7 +1,8 @@
 <div>Your shopping cart</div>
 <app-item [item]="item" *ngFor="let item of shoppingCart"
 (removeFromCartEvent)="removeFromCart($event)"
-[existInCart]="existInCart(item)" ></app-item>
+[existInCart]="existInCart(item)" >
+</app-item>
 <hr>
 
 <div class="container row" appInfiniteScroll
