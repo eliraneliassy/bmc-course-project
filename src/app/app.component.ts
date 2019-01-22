@@ -1,8 +1,10 @@
+import { SuggestionsService } from './suggestions.service';
 import { FeedService } from './feed.service';
 import { ShoppingCartService } from './shopping-cart.service';
 import { db } from './../db';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -20,13 +22,28 @@ export class AppComponent implements OnInit, OnDestroy {
   feedSubscription: Subscription;
   isLoading: boolean;
 
+  serachTerm$: Subject<string> = new Subject<string>();
+
   constructor(private cartService: ShoppingCartService,
-    private feedService: FeedService) { }
+    private feedService: FeedService,
+    private suggestionsService: SuggestionsService) { }
 
   ngOnInit(): void {
     this.shoppingCart = this.cartService.shoppingCart;
     this.feedSubscription = this.feedService.getFeed(0)
       .subscribe((items: Item[]) => this.data = items);
+
+    this.serachTerm$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((term) => {
+          if (term) {
+            return this.suggestionsService.getSuggestions(term);
+          }
+        })
+      )
+      .subscribe(console.log);
   }
 
   addToCart(item) {
@@ -49,6 +66,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.data = [...this.data, ...items];
         this.isLoading = false;
       });
+  }
+
+  doSearch(term) {
+    this.serachTerm$.next(term);
   }
 
   ngOnDestroy(): void {
