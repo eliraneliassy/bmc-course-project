@@ -6,7 +6,7 @@
 <hr>
 
 <div class="container row" appInfiniteScroll
- (bottomReached)="loadMore($event)">
+ (bottomReached)="loadMore($event)" [isLoading]="isLoading">
 
   <app-item [item]="item" (addToCartEvent)="addToCart($event)"
   [existInCart]="existInCart(item)"

@@ -1,16 +1,19 @@
-import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
+import { Directive, HostListener, Output, EventEmitter, Input } from '@angular/core';
 
 @Directive({
   selector: '[appInfiniteScroll]'
 })
 export class InfiniteScrollDirective {
 
+  @Input() isLoading: boolean;
   @Output() bottomReached: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor() { }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-
+    if (this.isLoading) {
+      return;
+    }
     const distance = this.getDistFromBottom();
     console.log(distance);
     if (distance < 20) {

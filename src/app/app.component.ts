@@ -1,6 +1,8 @@
+import { FeedService } from './feed.service';
 import { ShoppingCartService } from './shopping-cart.service';
 import { db } from './../db';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -8,16 +10,23 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
-  data: Item[] = db;
+
+  data: Item[] = [];
   shoppingCart: Item[] = [];
+  page = 0;
 
-  constructor(private cartService: ShoppingCartService) {
-  }
+  feedSubscription: Subscription;
+  isLoading: boolean;
+
+  constructor(private cartService: ShoppingCartService,
+    private feedService: FeedService) { }
 
   ngOnInit(): void {
     this.shoppingCart = this.cartService.shoppingCart;
+    this.feedSubscription = this.feedService.getFeed(0)
+      .subscribe((items: Item[]) => this.data = items);
   }
 
   addToCart(item) {
@@ -33,6 +42,16 @@ export class AppComponent implements OnInit {
   }
 
   loadMore() {
-    console.log('load more');
+    this.page++;
+    this.isLoading = true;
+    this.feedService.getFeed(this.page)
+      .subscribe((items: Item[]) => {
+        this.data = [...this.data, ...items];
+        this.isLoading = false;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.feedSubscription.unsubscribe();
   }
 }
