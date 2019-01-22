@@ -1,5 +1,6 @@
+import { ShoppingCartService } from './shopping-cart.service';
 import { db } from './../db';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -7,23 +8,28 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   data: Item[] = db;
   shoppingCart: Item[] = [];
 
+  constructor(private cartService: ShoppingCartService) {
+  }
+
+  ngOnInit(): void {
+    this.shoppingCart = this.cartService.shoppingCart;
+  }
+
   addToCart(item) {
-    this.shoppingCart.push(item);
+    this.cartService.addToCart(item);
   }
 
   removeFromCart(item: Item) {
-    const index = this.shoppingCart.indexOf(item);
-    if (index > -1) {
-      this.shoppingCart.splice(index, 1);
-    }
+    this.cartService.removeFromCart(item);
   }
 
   existInCart(item: Item): boolean {
-    return this.shoppingCart.indexOf(item) > -1;
+    return this.cartService.existInCart(item);
   }
 
   loadMore() {
