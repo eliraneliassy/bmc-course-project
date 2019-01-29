@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { FeedComponent } from './feed/feed.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShowItemComponent } from './show-item/show-item.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ShowItemComponent } from './show-item/show-item.component';
     DiscountPipe,
     FeedComponent,
     ShoppingCartComponent,
-    ShowItemComponent
+    ShowItemComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

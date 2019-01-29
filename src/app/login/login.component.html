@@ -1,0 +1,35 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" 
+      class="form-control" 
+      placeholder="Enter email"
+      ngModel
+      name="email"
+      required
+      email
+      #email1="ngModel">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <small class="error"
+      *ngIf="email1.touched && email1.hasError('required')">Email is required</small><br>
+      <small class="error"
+      *ngIf="email1.touched && email1.hasError('email')">Email format is invalid</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" 
+      class="form-control" placeholder="Password"
+      ngModel
+      name="password"
+      required
+      >
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary"
+    [disabled]="!form.valid">Submit</button>
+  </form>
+</div>
