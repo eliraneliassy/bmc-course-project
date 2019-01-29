@@ -21,6 +21,12 @@ export class ShoppingCartService {
   }
 
   existInCart(item: Item): boolean {
-    return this.shoppingCart.indexOf(item) > -1;
+    const itemInCart = this.shoppingCart.find(x => x._id === item._id);
+    return itemInCart ? true : false;
+
+  }
+
+  getItem(itemId: string): Item {
+    return this.shoppingCart.find(x => x._id === itemId);
   }
 }

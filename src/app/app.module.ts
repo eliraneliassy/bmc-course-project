@@ -13,6 +13,7 @@ import { DiscountPipe } from './discount.pipe';
 import { RouterModule } from '@angular/router';
 import { FeedComponent } from './feed/feed.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShowItemComponent } from './show-item/show-item.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     InfiniteScrollDirective,
     DiscountPipe,
     FeedComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ShowItemComponent
   ],
   imports: [
     BrowserModule,
