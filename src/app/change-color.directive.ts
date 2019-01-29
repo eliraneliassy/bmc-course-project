@@ -5,7 +5,7 @@ import { Directive, ElementRef, OnInit, Renderer2, Input } from '@angular/core';
 })
 export class ChangeColorDirective implements OnInit {
 
-  @Input() color = 'blue';
+  @Input() color = '';
 
   constructor(private element: ElementRef,
     private renderer: Renderer2) { }

@@ -9,13 +9,20 @@ import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
 import { ChangeColorDirective } from './change-color.directive';
 import { InfiniteScrollDirective } from './infinite-scroll.directive';
+import { DiscountPipe } from './discount.pipe';
+import { RouterModule } from '@angular/router';
+import { FeedComponent } from './feed/feed.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemComponent,
     ChangeColorDirective,
-    InfiniteScrollDirective
+    InfiniteScrollDirective,
+    DiscountPipe,
+    FeedComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

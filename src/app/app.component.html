@@ -1,20 +1,13 @@
-<input (input)="doSearch($event.target.value)">
-
-
-<div>Your shopping cart</div>
-<app-item [item]="item" *ngFor="let item of shoppingCart"
-(removeFromCartEvent)="removeFromCart($event)"
-[existInCart]="existInCart(item)" >
-</app-item>
-<hr>
-
-<div class="container row" appInfiniteScroll
- (bottomReached)="loadMore($event)" [isLoading]="isLoading">
-
-  <app-item [item]="item" (addToCartEvent)="addToCart($event)"
-  [existInCart]="existInCart(item)"
-   *ngFor="let item of data" class="col-lg-3 col-md-6 col-sm-12"></app-item>
-
-   <img src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif"
-   *ngIf="isLoading" class="loader">
+<div class="header">
+   <a routerLink="/">Feed</a>
+   <a routerLink="/cart">Cart</a>
 </div>
+
+<router-outlet></router-outlet>
+
+<!-- <input (input)="doSearch($event.target.value)"> -->
+
+
+
+
+

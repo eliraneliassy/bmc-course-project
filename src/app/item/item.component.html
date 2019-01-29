@@ -1,15 +1,15 @@
-<div class="item" appChangeColor 
-[color]="existInCart ? 'yellow' : 'blue'">
+<div class="item">
   <div class="title">
     {{item.description}}
   </div>
 
   <img [ngStyle]="{ 'background-image': 'url(' + item.imageUrl + ')'}">
 
-  <div class="price">{{item.price}}</div>
+  <div class="price">{{item.price | discount | currency}}</div>
 
-  <button *ngIf="!existInCart; else elseBlock" (click)="addToCartClicked()" 
-  class="btn btn-primary">Add To Cart</button>
+  <div class="date">{{item.purchaseDate | date}}</div>
+
+  <button *ngIf="!existInCart; else elseBlock" (click)="addToCartClicked()" class="btn btn-primary">Add To Cart</button>
   <ng-template #elseBlock>
     <button (click)="removeFromCartClicked()" class="btn btn-danger">
       Remove from cart
