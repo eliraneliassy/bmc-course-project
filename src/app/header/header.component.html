@@ -1,0 +1,16 @@
+<div class="header">
+  <div>
+    <a routerLink="/">Feed</a>
+    <a routerLink="/cart">Cart</a>
+  </div>
+
+  <div *ngIf="user; else elseBlock">
+    Welcome, {{user}} 
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+
+  <ng-template #elseBlock>
+    <button class="btn btn-primary" routerLink="login">Login</button>
+  </ng-template>
+
+</div>
