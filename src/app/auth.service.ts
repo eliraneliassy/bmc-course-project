@@ -15,7 +15,7 @@ export class AuthService {
     return this.user$.asObservable();
   }
 
-  setUser(userName) {
+  private setUser(userName) {
     this.user$.next(userName);
   }
 

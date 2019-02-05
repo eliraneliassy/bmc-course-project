@@ -14,13 +14,6 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-
-
-  
-
-
-
-
   serachTerm$: Subject<string> = new Subject<string>();
 
   constructor(

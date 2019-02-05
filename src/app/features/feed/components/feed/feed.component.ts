@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FeedService } from '../feed.service';
+
 import { Subscription } from 'rxjs';
-import { ShoppingCartService } from '../shopping-cart.service';
+
 import { Router } from '@angular/router';
+import { FeedService } from 'src/app/feed.service';
+import { ShoppingCartService } from 'src/app/shopping-cart.service';
 
 @Component({
   selector: 'app-feed',
