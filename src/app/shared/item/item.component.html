@@ -9,9 +9,9 @@
 
   <div class="date">{{item.purchaseDate | date}}</div>
 
-  <button *ngIf="!existInCart; else elseBlock" (click)="addToCartClicked()" class="btn btn-primary">Add To Cart</button>
+  <button *ngIf="!existInCart; else elseBlock" (click)="addToCartClicked($event)" class="btn btn-primary">Add To Cart</button>
   <ng-template #elseBlock>
-    <button (click)="removeFromCartClicked()" class="btn btn-danger">
+    <button (click)="removeFromCartClicked($event)" class="btn btn-danger">
       Remove from cart
     </button>
   </ng-template>

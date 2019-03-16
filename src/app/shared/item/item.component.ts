@@ -24,11 +24,13 @@ export class ItemComponent {
   // ngOnInit() {
   //   console.log('on init');
   // }
-  addToCartClicked() {
+  addToCartClicked(event: Event) {
+    event.stopPropagation();
     this.addToCartEvent.emit(this.item);
   }
 
-  removeFromCartClicked() {
+  removeFromCartClicked(event: Event) {
+    event.stopPropagation();
     this.removeFromCartEvent.emit(this.item);
   }
 

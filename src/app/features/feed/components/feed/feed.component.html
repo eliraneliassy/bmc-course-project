@@ -6,7 +6,6 @@
   (addToCartEvent)="addToCart($event)" 
   [existInCart]="existInCart(item)" 
   *ngFor="let item of data"
-  (click)="navigateToItem(item)"
      class="col-lg-3 col-md-6 col-sm-12"></app-item>
 
   <img src="https://loading.io/spinners/typing/lg.-text-entering-comment-loader.gif" *ngIf="isLoading" class="loader">
