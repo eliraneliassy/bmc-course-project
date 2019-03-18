@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "bmc-course-project"
+  "defaultProject": "bmc-course-project",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
