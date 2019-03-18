@@ -1,3 +1,4 @@
+import { FetchFeeds } from './../../store/feed.actions';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
@@ -5,11 +6,15 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { FeedService } from 'src/app/feed.service';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/reducers';
+import { getFeedItems } from '../../store/feed.selectors';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss']
+  styleUrls: ['./feed.component.scss'],
+
 })
 export class FeedComponent implements OnInit, OnDestroy {
 
@@ -21,10 +26,12 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   constructor(private feedService: FeedService,
     private cartService: ShoppingCartService,
-    private router: Router) { }
+    private router: Router,
+    private store: Store<State>) { }
 
   ngOnInit() {
-    this.feedSubscription = this.feedService.getFeed(0)
+    this.store.dispatch(new FetchFeeds());
+    this.store.select(getFeedItems)
       .subscribe((items: Item[]) => this.data = items);
   }
 

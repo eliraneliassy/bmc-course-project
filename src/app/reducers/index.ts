@@ -1,4 +1,4 @@
-import { AppState, reducer } from './../store/app.reducer';
+import * as fromApp from './../store/app.reducer';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -9,11 +9,11 @@ import {
 import { environment } from '../../environments/environment';
 
 export interface State {
-  app: AppState;
+  app: fromApp.AppState;
 }
 
 export const reducers: ActionReducerMap<State> = {
-  app: reducer
+  app: fromApp.reducer
 };
 
 

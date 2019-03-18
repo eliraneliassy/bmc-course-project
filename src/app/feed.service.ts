@@ -16,6 +16,6 @@ export class FeedService {
     let myParams: HttpParams = new HttpParams();
     myParams = myParams.append('page', page.toString());
 
-    return this.httpClient.get<Item[]>(this.BASE_URL + '/feed', { params: myParams });
+    return this.httpClient.get<Item[]>(this.BASE_URL + 'feed', { params: myParams });
   }
 }
